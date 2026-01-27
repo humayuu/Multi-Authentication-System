@@ -26,7 +26,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <form method="POST" action="{{ route('user.logout') }}">
+                                    <form method="POST" action="{{ route('admin.logout') }}">
                                         @csrf
                                         <button type="submit" class="btn btn-primary">Logout</button>
                                     </form>

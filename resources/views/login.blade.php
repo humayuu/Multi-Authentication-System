@@ -18,21 +18,41 @@
                 <div class="card shadow-lg border-0">
                     <div class="card-body p-5">
                         <div class="text-center mb-4">
-                            <h1 class="fw-bold text-primary mb-2">Welcome Back</h1>
+                            <h1 class="fw-bold text-primary mb-2">User Login</h1>
                             <p class="text-muted">Multi Authentication System</p>
                         </div>
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
 
-                        <form>
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
+                        <form method="POST" action="{{ route('user.loggedIn') }}">
+                            @csrf
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label fw-semibold">Email address</label>
-                                <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
-                                    placeholder="Enter your email" required>
+                                <input type="email"
+                                    class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                    name="email" placeholder="Enter your email" value="{{ old('email') }}">
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label fw-semibold">Password</label>
-                                <input type="password" class="form-control form-control-lg" id="exampleInputPassword1"
-                                    placeholder="Enter your password" required>
+                                <input type="password"
+                                    class="form-control form-control-lg @error('password') is-invalid @enderror"
+                                    name="password" placeholder="Enter your password">
+                                @error('password')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="mb-3 form-check">
@@ -63,8 +83,8 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     </script>
 </body>
 
