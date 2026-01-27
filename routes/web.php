@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\Admin\AdminCheckMiddleware;
+use App\Http\Middleware\Admin\LoggedInAdminMiddleware;
 use App\Http\Middleware\CheckUserMiddleware;
 use App\Http\Middleware\loggedInUserMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -26,8 +28,8 @@ Route::controller(UserController::class)->group(function () {
 // Admin All Routes
 Route::prefix('admin')->group(function () {
     Route::controller(AdminController::class)->group(function () {
-        Route::get('/', 'AdminLoginPage')->name('admin.login.page');
-        Route::get('/dashboard', 'AdminDashboard')->name('admin.dashboard');
+        Route::get('/', 'AdminLoginPage')->name('admin.login.page')->middleware(LoggedInAdminMiddleware::class);
+        Route::get('/dashboard', 'AdminDashboard')->name('admin.dashboard')->middleware(AdminCheckMiddleware::class);
 
         Route::post('login', 'AdminLogin')->name('admin.login');
         Route::post('logout', 'AdminLogout')->name('admin.logout');
