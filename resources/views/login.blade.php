@@ -23,6 +23,7 @@
 
                                     <div class="d-grid">
                                         <button type="submit" class="btn btn-primary btn-lg">Log In</button>
+                                        <a href="{{ route('password.request') }}">Forgot Password</a>
                                     </div>
                                 </form>
                             </div>
