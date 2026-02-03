@@ -21,6 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'last_seen',
     ];
 
     /**
@@ -42,7 +43,18 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return [
             'email_verified_at' => 'datetime',
+            'last_seen' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function isOnline(): bool
+    {
+        return cache()->has('user-online-' . $this->id);
+    }
+
+    public function lastSeenForHumans(): string
+    {
+        return $this->last_seen ? $this->last_seen->diffForHumans() : 'Never';
     }
 }

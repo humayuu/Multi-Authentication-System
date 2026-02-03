@@ -47,17 +47,16 @@
             <!--navigation-->
             <ul class="metismenu" id="menu">
                 <li>
-                    <a href="javascript:;" class="has-arrow">
+                    <a href="javascript:;">
                         <div class="parent-icon icon-color-1"><i class="bx bx-home-alt"></i>
                         </div>
                         <div class="menu-title">Dashboard</div>
                     </a>
-                    <ul>
-                        <li> <a href="index.html"><i class="bx bx-right-arrow-alt"></i>Analytics</a>
-                        </li>
-                        <li> <a href="index2.html"><i class="bx bx-right-arrow-alt"></i>Sales</a>
-                        </li>
-                    </ul>
+                    <a href="{{ route('all.users') }}">
+                        <div class="parent-icon icon-color-1"><i class="bx bx-user"></i>
+                        </div>
+                        <div class="menu-title">All Users</div>
+                    </a>
                 </li>
             </ul>
             <!--end navigation-->

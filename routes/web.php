@@ -42,6 +42,8 @@ Route::prefix('admin')->group(function () {
             ->middleware(AdminMiddleware::class)
             ->name('admin.password.update');
 
+        Route::get('all/users', 'AllUsers')->name('all.users');
+
         Route::post('login', 'AdminLogin')->name('admin.login');
         Route::post('logout', 'AdminLogout')->name('admin.logout');
     });

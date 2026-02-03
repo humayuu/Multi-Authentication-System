@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\User;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -109,5 +110,15 @@ class AdminController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Password updated successfully.');
+    }
+
+    /**
+     * Function for fetch all all users
+     */
+    public function AllUsers()
+    {
+        $users = User::all();
+
+        return view('admin.all_users', compact('users'));
     }
 }
