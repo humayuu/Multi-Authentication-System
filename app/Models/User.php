@@ -47,14 +47,4 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
-
-    public function isOnline(): bool
-    {
-        return cache()->has('user-online-' . $this->id);
-    }
-
-    public function lastSeenForHumans(): string
-    {
-        return $this->last_seen ? $this->last_seen->diffForHumans() : 'Never';
-    }
 }

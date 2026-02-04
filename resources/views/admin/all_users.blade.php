@@ -25,9 +25,8 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Phone</th>
                                     <th scope="col">Last Seen</th>
-                                    <th scope="col">Activity</th>
+                                    <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,6 +35,20 @@
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
+                                        @php
+                                            $lastSeen =
+                                                $user->last_seen >= $user->last_seen->diffForHumans()
+                                                    ? '--------------'
+                                                    : $user->last_seen->diffForHumans();
+                                        @endphp
+                                        <td>{{ $lastSeen }}</td>
+                                        <td>
+                                            @if ($user->last_seen >= $user->last_seen->diffForHumans())
+                                                <span class="btn btn-primary">Online</span>
+                                            @else
+                                                <span class="btn btn-dark">Offline</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @empty
                                 @endforelse
